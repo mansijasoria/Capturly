@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { use } from 'react'
+import React from 'react'
 
 const user = {};
 const Navbar = () => {
