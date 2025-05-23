@@ -1,9 +1,63 @@
-import React from 'react'
+import { ICONS } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-const Header = ({subHeader,title,userImg}: SharedHeaderProps) => {
+const Header = ({ subHeader, title, userImg }: SharedHeaderProps) => {
   return (
-    <div>Header</div>
-  )
-}
+    <header className="header">
+      <section className="header-container">
+        <div className="details">
+          {userImg && (
+            <Image
+              src={userImg || "/assets/images/dummy.jpg"}
+              alt="user"
+              width={66}
+              height={66}
+              className="rounded-full"
+            />
+          )}
 
-export default Header
+          <article>
+            <p>{subHeader}</p>
+            <h1>{title}</h1>
+          </article>
+        </div>
+
+        <aside>
+          <Link href="/upload">
+            <Image
+              src="/assets/icons/upload.svg"
+              alt="upload"
+              width={16}
+              height={16}
+            />
+            <span>Upload a Video</span>
+          </Link>
+          <div className="record">
+            <button className="primary-btn">
+              <Image src={ICONS.record} alt="record" width={16} height={16} />
+              <span>Record a video</span>
+            </button>
+          </div>
+        </aside>
+      </section>
+
+      <section className="search-filter">
+        <div className="search">
+          <Image
+            src="/assets/icons/search.svg"
+            alt="search"
+            width={16}
+            height={16}
+          />
+          <input type="text" placeholder="Search for videos, tags, folders.." />
+        </div>
+
+        {`<DropdownList />`}
+      </section>
+    </header>
+  );
+};
+
+export default Header;

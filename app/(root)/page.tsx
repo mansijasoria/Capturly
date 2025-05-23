@@ -4,7 +4,7 @@ import React from 'react'
 const Page = () => {
   return (
    <main className='wrapper page'>
-    <Header />
+    <Header title='All Videos' subHeader='Public Library' />
    </main>
   )
 }
