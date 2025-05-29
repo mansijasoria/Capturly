@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Mansi-Jasoria-s-workspace-g9a3n8.us-east-1.xata.sh/db/capturly",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
