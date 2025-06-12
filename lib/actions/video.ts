@@ -32,7 +32,7 @@ const revalidatePaths = (paths: string[]) => {
 //Server Action:
 export const getVideoUploadUrl = withErrorHandling(async () => {
   await getSessionUserId();
-  const videoResonse = await apiFetch<BunnyVideoResponse>(
+  const videoResponse = await apiFetch<BunnyVideoResponse>(
     `${VIDEO_STREAM_BASE_URL}/${BUUNY_LIBRARY_ID}/videos`,
     {
       method: "POST",
@@ -44,10 +44,10 @@ export const getVideoUploadUrl = withErrorHandling(async () => {
     }
   );
 
-  const uploadUrl = `${VIDEO_STREAM_BASE_URL}/${BUUNY_LIBRARY_ID}/video/${videoResonse.guid}`;
+  const uploadUrl = `${VIDEO_STREAM_BASE_URL}/${BUUNY_LIBRARY_ID}/videos/${videoResponse.guid}`;
 
   return {
-    videoId: videoResonse.guid,
+    videoId: videoResponse.guid,
     uploadUrl,
     accessKey: ACCESS_KEYS.streamAccessKey,
   };
@@ -55,7 +55,7 @@ export const getVideoUploadUrl = withErrorHandling(async () => {
 
 export const getThumbnailUploadUrl = withErrorHandling(
   async (videoId: string) => {
-    const fileName = `${Date.now()}-${videoId} - thumbnail}`;
+    const fileName = `${Date.now()}-${videoId}-thumbnail}`;
 
     const uploadUrl = `${THUMBNAIL_STORAGE_BASE_URL}/thumbnails/${fileName}`;
 

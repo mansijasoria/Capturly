@@ -30,12 +30,11 @@ const uploadFileToBunny = (
   });
 
 
-const page = () => {
+const UploadPage = () => {
   const router = useRouter();
-  const [isSubmitting, setSubmitting] = useState(false);
-
-  const [videoDuration, setVideoDuration] = useState(0);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [videoDuration, setVideoDuration] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -51,7 +50,7 @@ const page = () => {
     }
   }, [video.duration]);
 
-  const [error, setError] = useState("");
+ 
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -62,7 +61,7 @@ const page = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    setSubmitting(true);
+    setIsSubmitting(true);
 
     try {
       if (!video.file || !thumbnail.file) {
@@ -120,7 +119,7 @@ const page = () => {
     } catch (error) {
       console.log("Error Submitting form", error);
     } finally {
-      setSubmitting(false);
+      setIsSubmitting(false);
     }
   };
   return (
@@ -192,4 +191,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default UploadPage;
